@@ -1,0 +1,69 @@
+#!/usr/bin/env node
+
+var webpack = require('webpack');
+var webpackDevServer = require('webpack-dev-server');
+//var webpackDevMiddleware = require("webpack-dev-middleware");
+var webpackConfig = require('./webpack.config.js');
+var program = require('commander');
+program
+  .version('0.0.1')
+  .option('-d, --dev', '开发环境')
+  .option('-b, --build', '编译环境')
+  //.option('-b, --build [type]','编译环境[test]','test')
+  .parse(process.argv);
+console.log('react es6 开发脚手架');
+
+if (program.dev) {
+  dev();
+}
+
+if (program.build) {
+  build(program.build);
+}
+
+function dev(argument){
+  
+}
+function dev1(argument) {
+  console.log('当前环境为开发环境')
+  var devConfig = webpackConfig({ dev: true });
+  //var entries = Object.keys(devConfig.entry);
+  for (var key in devConfig.entry) {
+    devConfig.entry[key].unshift('webpack-dev-server/client?http://localhost:8888/')
+  }
+  var compiler = webpack(devConfig);
+  var server = new webpackDevServer(compiler, {
+    inline: true,
+    hot: true,
+    quiet: false,
+    noInfo: true,
+    hot: true,
+    progress: true,
+    //noInfo: true,
+    stats: {
+      colors: true // 用颜色标识
+    }
+    /*,
+        proxy: {
+          "*": "http://localhost:9000" // 用于转发api数据，但webpack自己提供的并不太好用
+        },*/
+  });
+  server.listen(8888); //http://localhost:8888/build/
+
+}
+
+function build(argument) {
+
+
+  var config = webpackConfig({ dev: false });
+
+  var compiler = webpack(config, function(err, stats) {
+    if (err) {
+      console.log('编译出错了！');
+    } else {
+      console.log('编译完成!');
+    }
+  });
+
+
+}

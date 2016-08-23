@@ -1,124 +1,77 @@
-/******/ (function(modules) { // webpackBootstrap
-/******/ 	// The module cache
-/******/ 	var installedModules = {};
+#!/usr/bin/env node
+var browserSync = require('browser-sync');
+var webpack = require('webpack');
+var webpackDevMiddleware = require('webpack-dev-middleware');
+var webpackHotMiddleware = require('webpack-hot-middleware');
+//var webpackDevMiddleware = require("webpack-dev-middleware");
+var webpackConfig = require('./webpack.config.js');
+var program = require('commander');
+program
+  .version('0.0.1')
+  .option('-d, --dev', '开发环境')
+  .option('-b, --build', '编译环境')
+  //.option('-b, --build [type]','编译环境[test]','test')
+  .parse(process.argv);
+console.log('react es6 开发脚手架');
 
-/******/ 	// The require function
-/******/ 	function __webpack_require__(moduleId) {
+if (program.dev) {
+  dev();
+}
 
-/******/ 		// Check if module is in cache
-/******/ 		if(installedModules[moduleId])
-/******/ 			return installedModules[moduleId].exports;
+if (program.build) {
+  build(program.build);
+}
 
-/******/ 		// Create a new module (and put it into the cache)
-/******/ 		var module = installedModules[moduleId] = {
-/******/ 			exports: {},
-/******/ 			id: moduleId,
-/******/ 			loaded: false
-/******/ 		};
+function dev(argument){
+  var devConfig = webpackConfig({ dev: true });
+  
+  for (var key in devConfig.entry) {
+    devConfig.entry[key].unshift('webpack-hot-middleware/client')
+  }
+  var bundler = webpack(devConfig);
+  browserSync({
+    server: {
+      baseDir: devConfig.srcDir,
 
-/******/ 		// Execute the module function
-/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+      middleware: [
+        webpackDevMiddleware(bundler, {
+          // IMPORTANT: dev middleware can't access config, so we should
+          // provide publicPath by ourselves
+          //publicPath: devConfig.output.publicPath,
 
-/******/ 		// Flag the module as loaded
-/******/ 		module.loaded = true;
+          // pretty colored output
+          stats: { colors: true }
 
-/******/ 		// Return the exports of the module
-/******/ 		return module.exports;
-/******/ 	}
+          // for other settings see
+          // http://webpack.github.io/docs/webpack-dev-middleware.html
+        }),
 
+        // bundler should be the same as above
+        webpackHotMiddleware(bundler)
+      ]
+    },
 
-/******/ 	// expose the modules object (__webpack_modules__)
-/******/ 	__webpack_require__.m = modules;
-
-/******/ 	// expose the module cache
-/******/ 	__webpack_require__.c = installedModules;
-
-/******/ 	// __webpack_public_path__
-/******/ 	__webpack_require__.p = "";
-
-/******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(0);
-/******/ })
-/************************************************************************/
-/******/ ([
-/* 0 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	var _react = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"react\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _reactDom = __webpack_require__(1);
-
-	var _reactDom2 = _interopRequireDefault(_reactDom);
-
-	var _App = __webpack_require__(2);
-
-	var _App2 = _interopRequireDefault(_App);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	_reactDom2.default.render(_react2.default.createElement(_App2.default, null), document.getElmentById('app'));
-
-/***/ },
-/* 1 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	module.exports = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"react/lib/ReactDOM\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+    // no need to watch '*.js' here, webpack will take care of it for us,
+    // including full page reloads if HMR won't work
+    files: [
+      devConfig.srcDir+'/*.html'
+    ]
+});
+}
 
 
-/***/ },
-/* 2 */
-/***/ function(module, exports, __webpack_require__) {
+function build(argument) {
 
-	'use strict';
 
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
+  var config = webpackConfig({ dev: false });
 
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+  var compiler = webpack(config, function(err, stats) {
+    if (err) {
+      console.log('编译出错了！');
+    } else {
+      console.log('编译完成!');
+    }
+  });
 
-	var _react = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"react\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
 
-	var _react2 = _interopRequireDefault(_react);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-	var App = function (_React$Component) {
-	  _inherits(App, _React$Component);
-
-	  function App() {
-	    _classCallCheck(this, App);
-
-	    return _possibleConstructorReturn(this, Object.getPrototypeOf(App).apply(this, arguments));
-	  }
-
-	  _createClass(App, [{
-	    key: 'render',
-	    value: function render() {
-	      return _react2.default.createElement(
-	        'div',
-	        null,
-	        'Hell World!'
-	      );
-	    }
-	  }]);
-
-	  return App;
-	}(_react2.default.Component);
-
-	exports.default = App;
-
-/***/ }
-/******/ ]);
+}
