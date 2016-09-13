@@ -4,7 +4,7 @@ var webpack = require('webpack');
 var webpackDevMiddleware = require('webpack-dev-middleware');
 var webpackHotMiddleware = require('webpack-hot-middleware');
 //var webpackDevMiddleware = require("webpack-dev-middleware");
-var webpackConfig = require('./webpack.config.js');
+var webpackConfig = require('./make.webpack.config.js');
 var program = require('commander');
 program
   .version('0.0.1')
@@ -26,22 +26,23 @@ function dev(argument){
   var devConfig = webpackConfig({ dev: true });
   
   for (var key in devConfig.entry) {
-    devConfig.entry[key].unshift('webpack-hot-middleware/client')
+    devConfig.entry[key].unshift('webpack-hot-middleware/client?reload=true')
   }
   var bundler = webpack(devConfig);
   browserSync({
     server: {
       baseDir: devConfig.srcDir,
-
+      //proxy: 'localhost:3000',
+      //port: 8080,
       middleware: [
         webpackDevMiddleware(bundler, {
           // IMPORTANT: dev middleware can't access config, so we should
           // provide publicPath by ourselves
-          //publicPath: devConfig.output.publicPath,
-
+          publicPath: devConfig.output.publicPath,
+          
           // pretty colored output
           stats: { colors: true }
-
+          
           // for other settings see
           // http://webpack.github.io/docs/webpack-dev-middleware.html
         }),

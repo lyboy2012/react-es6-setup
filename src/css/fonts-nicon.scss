@@ -1,0 +1,67 @@
+@import  "compass";
+
+@font-face {
+ src:  font_url('fonts/n-icons.eot?vdg74v',true);
+  font-weight: normal;
+  font-weight: normal;
+  font-style: normal;
+}
+
+[class^="n-icon-"], [class*=" n-icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'n-icons' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.n-icon-video-mac:before {
+  content: "\e901";
+}
+.n-icon-arrow-r:before {
+  content: "\e902";
+}
+.n-icon-arrow-l:before {
+  content: "\e903";
+}
+.n-icon-play-btn:before {
+  content: "\e904";
+}
+.n-icon-weibo-o:before {
+  content: "\e906";
+}
+.n-icon-wechat:before {
+  content: "\e907";
+}
+.n-icon-users:before {
+  content: "\e909";
+}
+.n-icon-user:before {
+  content: "\e90a";
+}
+.n-icon-pen-o:before {
+  content: "\e90b";
+}
+.n-icon-collection:before {
+  content: "\e90d";
+}
+.n-icon-weibo:before {
+  content: "\e910";
+}
+.n-icon-close:before {
+  content: "\e912";
+}
+.n-icon-comment:before {
+  content: "\e914";
+}
+.n-icon-search:before {
+  content: "\e91f";
+}
+

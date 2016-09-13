@@ -4,8 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server  --colors --inline",
-    "build": "webpack"
+    "start": "node index.js -d"
   },
   "bin": "index.js",
   "author": "",
@@ -17,11 +16,14 @@
     "babel-preset-react": "^6.11.1",
     "browser-sync": "^2.14.0",
     "commander": "^2.9.0",
+    "compass-mixins": "^0.12.10",
     "css-loader": "^0.23.1",
     "extract-text-webpack-plugin": "^1.0.1",
+    "file-loader": "^0.9.0",
     "html-loader": "^0.4.3",
     "html-webpack-plugin": "^2.22.0",
     "jsx-loader": "^0.13.2",
+    "less": "^2.7.1",
     "less-loader": "^2.2.3",
     "node-sass": "^3.8.0",
     "raw-loader": "^0.5.1",
@@ -30,6 +32,7 @@
     "react-hot-loader": "^2.0.0-alpha",
     "sass-loader": "^4.0.0",
     "style-loader": "^0.13.1",
+    "url-loader": "^0.5.7",
     "webpack": "^1.13.1",
     "webpack-dev-middleware": "^1.6.1",
     "webpack-dev-server": "^1.14.1",

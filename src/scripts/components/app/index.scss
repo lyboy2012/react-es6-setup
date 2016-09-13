@@ -1,4 +1,4 @@
-$primary-color:#f0f0f0;
+@import '../../../css/common.scss';
 body{
-  background: $primary-color;
+  font-family: $primary-font;
 }

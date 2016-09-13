@@ -1,3 +1,7 @@
+@import '../../../css/common.scss';
 h1{
-  color:#0000ff;
+  color:$main-text;
+}
+.other-test{
+  background: url(./img/img_e0e061a444ba619bb635af2443370102.jpg);
 }

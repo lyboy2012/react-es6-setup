@@ -1,6 +1,7 @@
 
 import React , { Component, PropTypes } from 'react';
 import Common from '../common/index';
+import Test from '../test';
 import './index.scss';
 class App extends Component {
   render(){
@@ -10,11 +11,12 @@ class App extends Component {
     let {txt,cat} = this.props;
     return (
       <div>
-        <h1>{this.props.txt}222</h1>
+        <h1>{this.props.txt}fdsfdsafdsf</h1>
         <b>{txt}</b>
         <h3>{cat}</h3>
-        <Button><Heart/>click me!</Button>
+        <Button><Heart/>click me ddd !</Button>
         <Common/>
+        <Test/>
       </div>
     );
   }
