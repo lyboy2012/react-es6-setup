@@ -1,8 +1,12 @@
 @import  "compass";
 
 @font-face {
- src:  font_url('fonts/n-icons.eot?vdg74v',true);
-  font-weight: normal;
+ font-family: 'n-icons';
+  src:  url('./fonts/n-icons.eot?vdg74v');
+  src:  url('./fonts/n-icons.eot?vdg74v#iefix') format('embedded-opentype'),
+    url('./fonts/n-icons.ttf?vdg74v') format('truetype'),
+    url('./fonts/n-icons.woff?vdg74v') format('woff'),
+    url('./fonts/n-icons.svg?vdg74v#n-icons') format('svg');
   font-weight: normal;
   font-style: normal;
 }

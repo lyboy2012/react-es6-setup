@@ -10,6 +10,7 @@ program
   .version('0.0.1')
   .option('-d, --dev', '开发环境')
   .option('-b, --build', '编译环境')
+  .option('-r, --run', '编译后运行环境')
   //.option('-b, --build [type]','编译环境[test]','test')
   .parse(process.argv);
 console.log('react es6 开发脚手架');
@@ -21,7 +22,29 @@ if (program.dev) {
 if (program.build) {
   build(program.build);
 }
+if (program.run) {
+  run();
+}
 
+function run(argument){
+  var runConfig = webpackConfig({ dev: false });
+  
+
+  var bundler = webpack(runConfig);
+  browserSync({
+    port: 8888,
+    server: {
+      baseDir: runConfig.buidDir,
+      server: true
+    },
+
+    // no need to watch '*.js' here, webpack will take care of it for us,
+    // including full page reloads if HMR won't work
+    files: [
+      runConfig.buidDir+'/*.html'
+    ]
+});
+}
 function dev(argument){
   var devConfig = webpackConfig({ dev: true });
   
@@ -70,9 +93,14 @@ function build(argument) {
     if (err) {
       console.log('编译出错了！');
     } else {
-      console.log('编译完成!');
+      console.log(stats.toString({colors: true}));
     }
   });
+
+  compiler.apply(new webpack.ProgressPlugin(function handler(percentage, msg) {
+
+   console.log((percentage * 100) + '%', msg);
+  }));
 
 
 }

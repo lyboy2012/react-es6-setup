@@ -11,9 +11,9 @@ class App extends Component {
     let {txt,cat} = this.props;
     return (
       <div>
-        <h1>{this.props.txt}fdsfdsafdsf</h1>
+        <h1>{this.props.txt}</h1>
         <b>{txt}</b>
-        <h3>{cat}</h3>
+        <h3 className="test">{cat}</h3>
         <Button><Heart/>click me ddd !</Button>
         <Common/>
         <Test/>

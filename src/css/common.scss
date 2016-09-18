@@ -1,5 +1,5 @@
-@import 'variables.scss';
-@import 'fonts-nicon.scss';
+@import 'variables';
+@import 'fonts-nicon';
 @import "compass/reset";
 @import "compass/support";
 
@@ -9,8 +9,8 @@
   height: 100px;
   @include box-shadow(0 1px 1px rgba(0, 0, 0, 0.1));
   color: $background;
-
-  @include background-image(radial-gradient(45px 45px, cyan 10px, dodgerblue 30px));
+  background: url(../images/img_e0e061a444ba619bb635af2443370102.jpg);
+ // @include background-image(radial-gradient(45px 45px, cyan 10px, dodgerblue 30px));
 
   
 }
