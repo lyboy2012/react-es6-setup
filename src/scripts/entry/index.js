@@ -1,10 +1,12 @@
-/*if (process.env.NODE_ENV !== 'production') {
-    require('../../index.html');
-}*/
 import React from 'react';
 import { render } from 'react-dom';
-import App from '../components/app/index';
-
-render(<App txt="index" cat={10}/>,document.getElementById('app'));
-
-
+import { Provider } from 'react-redux';
+import configureStore from '../store/configureStore';
+import App from '../containers/index/App';
+import { showHeader } from '../actions';
+const store = configureStore();
+store.dispatch(showHeader({ text: "测试Header 文本内容" } ));
+render(
+  <Provider store={store}>
+    <App/>
+  </Provider>, document.getElementById('app'));

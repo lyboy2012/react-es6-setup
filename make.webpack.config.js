@@ -6,6 +6,7 @@ var HtmlWebpackPlugin = require('html-webpack-plugin'); //打包时候连同html
 
 var UglifyJsPlugin = webpack.optimize.UglifyJsPlugin;
 
+
 function makeConf(options) {
   options = options || {};
 
@@ -32,10 +33,12 @@ function makeConf(options) {
         publicPath: dev ? '' : 'http://localhost:8888/' //页面中引入的url路径前缀（css，js） 相对路径 ，如果是绝对路径可以替换成cdn 路径
       },
       module: {
-        loaders: [{
+        loaders: [
+        { test: /\.(tpl|ejs)$/, loader: 'ejs' }, 
+        {
           test: /\.js$/,
           exclude: /(node_modules|bower_components)/,
-          loaders: ['react-hot', 'babel?presets[]=react,presets[]=es2015']
+          loaders: ['react-hot', 'babel?cacheDirectory=true&presets[]=react,presets[]=es2015,presets[]=stage-0&plugins[]=add-module-exports,plugins[]=typecheck,plugins[]=transform-decorators-legacy']
         }, {
           test: /\.(jpe?g|png|gif|svg)$/i,
           //注意后面的name=xx，这里很重要否则打包后会出现找不到资源的
