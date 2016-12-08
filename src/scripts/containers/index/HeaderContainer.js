@@ -1,15 +1,18 @@
 import React, { Component, PropTypes } from 'react';
 
 import { connect } from 'react-redux';
-
+import { changHeader } from '../../actions';
 
 
 class HeaderContainer extends Component {
 
   render() {
-    const { header } = this.props;
+    const { header,changHeader } = this.props;
     return(
-      <div>{header.txt}</div>
+      <div>
+        <div>{header.text}</div>
+        <button onClick={changHeader}>修改</button>
+      </div>
     )
   }
 }
@@ -20,4 +23,4 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps)(HeaderContainer);
+export default connect(mapStateToProps, { changHeader })(HeaderContainer);

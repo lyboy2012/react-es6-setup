@@ -10,5 +10,11 @@ export default {
       error: function() {
       }
     });
+  },
+  getHeaderText (cb) {
+    setTimeout(function (){
+      cb && cb({ text: "修改了测试Header 文本内容" });
+       
+    },2000);
   }
 }

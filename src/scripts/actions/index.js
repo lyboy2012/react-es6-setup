@@ -1,5 +1,5 @@
 import * as types from '../constants';
-import list from '../api';
+import api from '../api';
 
 //显示所有消息
 export function addInfo() {
@@ -22,6 +22,13 @@ export function showInfo() {
   }
 }
 
+export function changHeader(){
+  return function(dispatch, getState) {
+    api.getHeaderText(function(header) {
+      dispatch(showHeader(header));
+    });
+  }
+}
 //显示banner内容
 export function showHeader(header) {
   return {
@@ -56,7 +63,7 @@ export function showList(list) { //显示列表数据
 //getlist
 export function getList() {
   return function(dispatch, getState) {
-    list.getListByPageNo('', function(list) {
+    api.getListByPageNo('', function(list) {
       dispatch(showList(list));
     });
   }

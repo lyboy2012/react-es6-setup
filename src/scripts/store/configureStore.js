@@ -9,8 +9,7 @@ const middleware = process.env.NODE_ENV === 'production' ?
 
 export default function configureStore(initialState) {
 
-  const store = createStore(rootReducer, initialState, applyMiddleware(...middleware));
-  
+  const store = createStore(rootReducer, initialState, applyMiddleware(...middleware))
   return store
 }
 
