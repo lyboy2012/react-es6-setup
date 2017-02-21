@@ -29,6 +29,7 @@ const IndexApp = () => (
         <h2>Index!</h2>
     </div>
 )
+
 render(
     <Provider store={store}>
         <Router history={hashHistory}>

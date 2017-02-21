@@ -2,11 +2,16 @@ import React from 'react';
 import {render} from 'react-dom';
 import {Provider} from 'react-redux';
 import configureStore from '../store/configureStore';
+import { syncHistoryWithStore } from 'react-router-redux';
 
 
 import {Router, Route, Link, IndexRoute, browserHistory,hashHistory} from 'react-router';
 
 const store = configureStore();
+const history = syncHistoryWithStore(
+    browserHistory,
+    store
+);
 //store.dispatch(showHeader({ text: "测试Header 文本内容" } ));
 
 
@@ -23,7 +28,8 @@ const rootRoute = {
     } ]
 }
 
+
 render(
     <Provider store={store}>
-        <Router history={hashHistory} routes={rootRoute} />
+        <Router history={history} routes={rootRoute} />
     </Provider>, document.getElementById('app'));
