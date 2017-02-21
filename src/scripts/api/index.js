@@ -8,6 +8,7 @@ export default {
         cb && cb(response);
       },
       error: function() {
+
       }
     });
   },

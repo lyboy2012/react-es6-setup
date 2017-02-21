@@ -57,10 +57,11 @@ function makeConf(options) {
         extensions: ['', '.js', '.jsx', '.css', '.scss', '.png', '.jpg'] //开启后缀名的自动补全
       },
       externals: {
-        "react": 'React',
-        "react-dom": "ReactDOM",
-        'redux': 'Redux',
-        'react-redux': 'ReactRedux'
+        //"react": 'React',
+        //"react-dom": "ReactDOM",
+        //'redux': 'Redux',
+        //'react-redux': 'ReactRedux',
+        //'antd': 'antd'
       },
       plugins: [
 
@@ -139,7 +140,7 @@ function makeConf(options) {
     config.module.loaders.push(cssLoader);
     config.module.loaders.push(sassLoader);
     config.module.loaders.push(lessLoader);
-    config.module.loaders.push(htmlLoader);
+    //config.module.loaders.push(htmlLoader);
     //config.module.loaders.push(htmlLoader);
     config.devtool = "#cheap-module-source-map";
 
@@ -176,7 +177,7 @@ function makeConf(options) {
         // additional chunk所依赖的css，即指定`ExtractTextPlugin.extract()`
         // 第一个参数`notExtractLoader`，一般是使用style-loader
         // @see https://github.com/webpack/extract-text-webpack-plugin
-        allChunks: false
+        allChunks: true
       })
     );
 
