@@ -1,0 +1,21 @@
+@import '../../../css/common';
+.header{
+  height:80px;
+  background:#fff;
+  margin-bottom: 24px;
+  padding: 0 48px;
+  width: 100%;
+  .logo{
+    font-size: 20px;
+    font-family: Raleway,Hiragino Sans GB,sans-serif;
+    height: 80px;
+    line-height: 80px;
+    text-transform: uppercase;
+  }
+  .nav{
+    height:80px;
+    &>li{
+      line-height:78px;
+    }
+  }
+}

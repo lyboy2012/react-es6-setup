@@ -2,34 +2,34 @@ import React from 'react';
 import {render} from 'react-dom';
 import {Provider} from 'react-redux';
 import configureStore from '../store/configureStore';
-import { syncHistoryWithStore } from 'react-router-redux';
+import {syncHistoryWithStore} from 'react-router-redux';
 
 
-import {Router, Route, Link, IndexRoute, browserHistory,hashHistory} from 'react-router';
+import {Router, browserHistory} from 'react-router';
 
 const store = configureStore();
 const history = syncHistoryWithStore(
     browserHistory,
     store
 );
-//store.dispatch(showHeader({ text: "测试Header 文本内容" } ));
 
-
-
-
+/**
+ *
+ * @type {{childRoutes: [*]}}
+ */
 const rootRoute = {
-    childRoutes: [ {
+    childRoutes: [{
         path: '/',
-        component: require('../components/IndexApp'),
+        component: require('../components/index'),
         childRoutes: [
-            require('../routes/home'),
-            require('../routes/index')
+            require('../routes/about'),
+            require('../routes/foo')
         ]
-    } ]
+    }]
 }
 
 
 render(
     <Provider store={store}>
-        <Router history={history} routes={rootRoute} />
+        <Router history={history} routes={rootRoute}/>
     </Provider>, document.getElementById('app'));

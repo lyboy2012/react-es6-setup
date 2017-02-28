@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import HeaderContainer from './HeaderContainer';
 
 import { Input } from 'antd';
-//export 不加default 出现加载不陈成功问题i
+//export 不加default 出现加载不成功问题
 //
 export default class App extends Component {
     render() {

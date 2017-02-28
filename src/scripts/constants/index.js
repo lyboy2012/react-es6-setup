@@ -17,3 +17,4 @@ export const SHOW_ADS = 'SHOW_ADS';
 export const SHOW_HEADER = 'SHOW_HEADER';
 export const GET_HEADER = 'GET_HEADER';
 export const SHOW_LIST = 'SHOW_LIST';
+export const  PUSH_ROUTER = 'PUSH_ROUTER';

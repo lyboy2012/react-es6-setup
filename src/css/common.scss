@@ -1,10 +1,17 @@
 @import 'variables';
 @import 'fonts-nicon';
+
 @import "compass/reset";
 @import "compass/support";
 
 @import "compass/css3";
 @import "compass/functions";
+html,body{
+  height:100%;
+}
+.page-wrapper{
+  background: #ececec;
+}
 .test{
   height: 100px;
   @include box-shadow(0 1px 1px rgba(0, 0, 0, 0.1));
