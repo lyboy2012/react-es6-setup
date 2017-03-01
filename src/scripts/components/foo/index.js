@@ -6,7 +6,6 @@ import {Input, Row, Col} from 'antd';
 import LeftMenu from '../left-menu/index';
 import './index.scss';
 //export 不加default 出现加载不成功问题
-//
 export default class Foo extends Component {
     render() {
         return (
