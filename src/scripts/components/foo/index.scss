@@ -1,0 +1,16 @@
+@import '../../../css/common';
+.main-wrapper{
+  margin: 24px 48px;
+  border-radius: 4px;
+  @include border-radius(4px);
+  padding: 24px 0;
+  background:#fff;
+  .main-container{
+    position: relative;
+    min-height:800px;
+    margin-left:-1px;
+    border-left:1px solid #e9e9e9;
+
+  }
+
+}

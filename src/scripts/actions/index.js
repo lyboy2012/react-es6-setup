@@ -1,15 +1,6 @@
 import * as types from '../constants';
 
 
-export function pushRouter(pathname) {
-
-    return {
-        type: types.PUSH_ROUTER,
-        pathname: pathname
-    }
-}
-
-
 export function getHeader(header) {
     return {
         type: types.GET_HEADER,

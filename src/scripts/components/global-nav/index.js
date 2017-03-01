@@ -10,7 +10,7 @@ import React, {
 import {Row, Col, Menu, Icon} from 'antd';
 import {IndexLink} from 'react-router';
 import {push} from 'react-router-redux';
-import {pushRouter} from '../../actions';
+import {pushRouter} from '../../actions/routerAction';
 import {connect} from 'react-redux';
 
 const SubMenu = Menu.SubMenu;

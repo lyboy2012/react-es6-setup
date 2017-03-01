@@ -2,7 +2,6 @@
 .header{
   height:80px;
   background:#fff;
-  margin-bottom: 24px;
   padding: 0 48px;
   width: 100%;
   .logo{
@@ -14,7 +13,9 @@
   }
   .nav{
     height:80px;
+
     &>li{
+      font-size: 16px;
       line-height:78px;
     }
   }
